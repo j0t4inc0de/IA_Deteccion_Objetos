@@ -7,6 +7,9 @@ cap = cv2.VideoCapture(0)
 cap.set(3, 640)
 cap.set(4, 480)
 
+#   modelo de YOLO
+model = YOLO('yolov8n.pt')
+
 #   bucle para mostrar la camara
 while True:
     #   capturar la camara
