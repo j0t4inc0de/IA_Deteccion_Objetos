@@ -1,11 +1,12 @@
+import math
 import cv2
 from ultralytics import YOLO
 
 #   iniciar camara
 cap = cv2.VideoCapture(0)
 #   ajustar tamaño
-cap.set(3, 640)
-cap.set(4, 480)
+cap.set(3, 1080)
+cap.set(4, 720)
 
 #   modelo de YOLO
 model = YOLO('yolov8n.pt')
@@ -37,20 +38,26 @@ while True:
         box = r.boxes
         #   recorremos la caja 'box'
         for b in box:
-            #   obtener las cordenadas para dibujar la BOX
-            x1, y1, x2, y2 = b.xyxy[0]
-            #   convertimos a entero los valores
-            x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
-            #   rectangulo en la camara
-            cv2.rectangle(img, (x1, y1), (x2, y2), (255,255,0), 3)
-            #   detallar el objeto detectado
-            org = [x1,x2] # cordenadas
-            font = cv2.FONT_HERSHEY_PLAIN # fuente
-            fontScale = 1
-            color = (255,255,255)
-            ancho = 2
-            #   añadimos texto en la imagen
-            cv2.putText(img,f'{classNasme}', org, font, fontScale, color, ancho)
+            #   porcentaje del objeto detectado
+            porcentaje = math.ceil((box.conf[0]*100))
+            print(porcentaje)
+            if porcentaje > 70:
+                #   obtener las cordenadas para dibujar la BOX
+                x1, y1, x2, y2 = b.xyxy[0]
+                #   convertimos a entero los valores
+                x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
+                #   rectangulo en la camara
+                cv2.rectangle(img, (x1, y1), (x2, y2), (255,255,0), 3)
+                #   detallar el objeto detectado
+                org = [x1,x2] # cordenadas
+                font = cv2.FONT_HERSHEY_COMPLEX_SMALL # fuente
+                fontScale = 1
+                color = (255,255,255)
+                ancho = 2
+                # capturamos clase individual
+                nombre = classNasme[int(b.cls[0])]
+                #   añadimos texto en la imagen
+                cv2.putText(img,f'{nombre}', org, font, fontScale, color, ancho)
     #   mostrar la camara en pantalla
     cv2.imshow('Webcam', img)
     #   definimos una tecla para cerrar la camara
