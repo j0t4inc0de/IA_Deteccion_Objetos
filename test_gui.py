@@ -14,39 +14,11 @@ class DetectorObjetos(QWidget):
         #llamamos al constructor de la clase padre
         self.initUI()
         #inicializamos el modelo YOLO
-        self.model = YOLO("yolov8n.pt")
+        self.model = YOLO("best.pt")
         #creamos una lista con los objetos que queremos detectar
-        self.objetos = ["person", "bicycle", "car", "motorbike", "aeroplane", "bus", "train", "truck", "boat",
-            "traffic light", "fire hydrant", "stop sign", "parking meter", "bench", "bird", "cat",
-            "dog", "horse", "sheep", "cow", "elephant", "bear", "zebra", "giraffe", "backpack", "umbrella",
-            "handbag", "tie", "suitcase", "frisbee", "skis", "snowboard", "sports ball", "kite", "baseball bat",
-            "baseball glove", "skateboard", "surfboard", "tennis racket", "bottle", "wine glass", "cup",
-            "fork", "knife", "spoon", "bowl", "banana", "apple", "sandwich", "orange", "broccoli",
-            "carrot", "hot dog", "pizza", "donut", "cake", "chair", "sofa", "pottedplant", "bed",
-            "diningtable", "toilet", "tvmonitor", "laptop", "mouse", "remote", "keyboard", "Celular",
-            "microwave", "oven", "toaster", "sink", "refrigerator", "book", "clock", "vase", "scissors",
-            "teddy bear", "hair drier", "toothbrush"]
-        self.translations = {
-            "person": "persona","bicycle": "bicicleta","car": "coche","motorbike": "moto","aeroplane": "avión",
-            "bus": "autobús","train": "tren","truck": "camión","boat": "barco","traffic light": "semáforo",
-            "fire hydrant": "hidrante","stop sign": "señal de alto","parking meter": "parquímetro",
-            "bench": "banco","bird": "pájaro","cat": "gato","dog": "perro","horse": "caballo","sheep": "oveja",
-            "cow": "vaca","elephant": "elefante","bear": "oso","zebra": "cebra","giraffe": "jirafa",
-            "backpack": "mochila","umbrella": "paraguas","handbag": "bolso","tie": "corbata","suitcase": "maleta",
-            "frisbee": "frisbi","skis": "esquís","snowboard": "snowboard","sports ball": "pelota deportiva",
-            "kite": "cometa","baseball bat": "bate de béisbol","baseball glove": "guante de béisbol",
-            "skateboard": "monopatín","surfboard": "tabla de surf","tennis racket": "raqueta de tenis","bottle": "botella",
-            "wine glass": "copa de vino","cup": "taza","fork": "tenedor","knife": "cuchillo","spoon": "cuchara",
-            "bowl": "cuenco","banana": "plátano","apple": "manzana","sandwich": "sándwich","orange": "naranja",
-            "broccoli": "brócoli","carrot": "zanahoria","hot dog": "perrito caliente","pizza": "pizza",
-            "donut": "dona","cake": "pastel","chair": "silla","sofa": "sofá","pottedplant": "planta en maceta",
-            "bed": "cama","diningtable": "mesa de comedor","toilet": "inodoro","tvmonitor": "monitor de TV",
-            "laptop": "portátil","mouse": "ratón","remote": "control remoto","keyboard": "teclado",
-            "Celular": "teléfono celular","microwave": "microondas","oven": "horno","toaster": "tostadora",
-            "sink": "fregadero","refrigerator": "refrigerador","book": "libro","clock": "reloj","vase": "jarrón",
-            "scissors": "tijeras","teddy bear": "oso de peluche","hair drier": "secador de pelo",
-            "toothbrush": "cepillo de dientes"
-        }
+        self.objetos = ['dog']
+        self.translations = {'dog':'perro'}
+        print(self.model.names)
         #inicializamos el timer para la camara y la variable camera_active 
         self.timer = QTimer(self)
         #conectamos el timer con la funcion update_frame
