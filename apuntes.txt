@@ -1,0 +1,4 @@
+Para instalar librerias aunque no reconozca el termino 'pip'
+    py -m pip install opencv-python
+
+Librerias: Open CV, Ultralitycs
