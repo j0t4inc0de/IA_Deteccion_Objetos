@@ -57,7 +57,7 @@ while True:
                 # capturamos clase individual
                 nombre = classNasme[int(b.cls[0])]
                 #   añadimos texto en la imagen
-                cv2.putText(img,f'{nombre}', org, font, fontScale, color, ancho)
+                cv2.putText(img,f'{nombre} {porcentaje}', org, font, fontScale, color, ancho)
     #   mostrar la camara en pantalla
     cv2.imshow('Webcam', img)
     #   definimos una tecla para cerrar la camara
